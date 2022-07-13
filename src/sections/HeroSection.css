@@ -1,0 +1,22 @@
+
+.image-rect {
+    background-size: 100%;
+    width: 516px;
+    height: 384px;  
+    flex-grow: 1;
+}
+
+.text-rect {
+    width: 516px;
+    flex-grow: 1;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 64px;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}

@@ -1,0 +1,17 @@
+
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 152px 172px;
+}
+
+.section.testimonial {
+    padding: 128px 172px;
+    background-color: #231E1E;
+}
+
+.section > * {
+    width: 75%;
+}

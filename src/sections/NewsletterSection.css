@@ -1,0 +1,27 @@
+
+.newsletter {
+    width: 634px;
+    text-align: center;
+}
+
+.signup-message {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 56px;
+    padding-bottom: 64px;
+}
+
+.subscription-response {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.newsletter-input {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 48px;
+}
+
+.newsletter-email {
+    flex-grow: 1;
+}

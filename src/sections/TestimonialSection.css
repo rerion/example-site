@@ -1,0 +1,15 @@
+
+.testimonial-text {
+    color: #F1F0F0;
+    padding-top: 68px;
+    padding-bottom: 96px;
+    width: 80%;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+.testimonial-author {
+    color: #989898;
+    font-size: 24px;
+    line-height: 29px;
+}
