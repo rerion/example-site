@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react";
+import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
 import "./Input.css";
 
 export type InputProps = {
@@ -6,6 +6,8 @@ export type InputProps = {
     type?: HTMLInputTypeAttribute; 
     label: string;
     className?: string;
+    value?: string;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export default function Input(props: InputProps) {

@@ -15,6 +15,12 @@
     font-size: 14px;
     line-height: 22px;
 }
+.subscription-response.error {
+    color: red;
+}
+.subscription-response.success {
+    color: #5EDC4B;
+}
 
 .newsletter-input {
     display: flex;

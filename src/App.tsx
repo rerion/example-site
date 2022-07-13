@@ -1,5 +1,5 @@
-import React from 'react';
-import { page, Pages, pages } from './api';
+import React, { useEffect, useState } from 'react';
+import { fetchPages, Pages, Page, fetchPage } from './api';
 import './App.css';
 import logo from './assets/logo.svg';
 import Button from './generic/Button';
@@ -14,26 +14,39 @@ const getLinks = (ps: Pages) => ps
     }));
 
 const getMainPage = (ps: Pages) => ps
-    .find(p => p.url === '/')!; // assume there is a homepage
+    .find(p => p.url === '/'); // assume there is a homepage
 
 function App() {
+    const [pages, setPages] = useState<Pages>([]);
+    const [mainPageInfo, setMainPageInfo] = useState<Page | null>(null);
+    
     const mainPage = getMainPage(pages);
     const navItems = getLinks(pages);
 
+    useEffect(() => {
+        fetchPages()
+            .then((pages) => {
+                setPages(pages);
+                return fetchPage(getMainPage(pages)!.id);
+            }).then((mainPage) => {
+                setMainPageInfo(mainPage);
+            });
+    }, []);
+
     return (<>
         <header className="header">
-            <a href={mainPage.url}>
+            <a href={mainPage ? mainPage.url : '/'}>
                 <img src={logo} alt="Breally logo"></img>
             </a>
             <nav className="navigation">
                 {navItems.map(navItem => {
-                    return <a href={navItem.url} className="nav-link">{navItem.name}</a>;
+                    return <a key={navItem.id} href={navItem.url} className="nav-link">{navItem.name}</a>;
                 })}
             </nav>
             <Button>Contact us</Button>
         </header>
         <main className="main">
-            {page.sections.map(section => {
+            {mainPageInfo ?  mainPageInfo.sections.map((section, index) => {
                 if (section.type === 'hero') {
                     return <HeroSection {...section}></HeroSection>;
                 }
@@ -44,7 +57,7 @@ function App() {
                     return <NewsletterSection></NewsletterSection>;
                 }
                 return null;
-            })}
+            }) : null}
         </main>
     </>);
 }

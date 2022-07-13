@@ -4,8 +4,13 @@
     min-width: 192px;
     height: 48px;
     border: 0;
+    font: inherit;
 }
 
 .btn:hover {
     cursor: pointer;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
 }

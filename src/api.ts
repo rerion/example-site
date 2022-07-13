@@ -4,7 +4,7 @@ export type Pages = {
     url: string;
 }[];
 
-export const pages: Pages = [
+const pages: Pages = [
     {
         "url": "/",
         "id": "MPz3uDxgKR"
@@ -37,7 +37,7 @@ export type Page = {
     sections: Section[];
 }
 
-export const page: Page = {
+const page: Page = {
     "url": "/",
     "id": "MPz3uDxgKR",
     "sections": [
@@ -56,3 +56,37 @@ export const page: Page = {
         }
     ]
 };
+
+const baseUrl = "https://adchitects-cms.herokuapp.com";
+const headers = new Headers();
+    
+headers.append("Authorization", "Basic YWRjaGl0ZWN0czpqc3J1bGV6eno=");
+headers.append("Content-Type", "application/json");
+
+export function fetchPages() {
+    return fetch(baseUrl + '/pages', {
+        headers, method: 'GET', credentials: 'include'
+    }).then(req => req.json() as Promise<Pages>);
+}
+
+export function fetchPage(id: string) {
+    return fetch(baseUrl + `/page/${id}`, {
+        headers, method: 'GET', credentials: 'include'
+    }).then(req => req.json() as Promise<Page>);
+}
+
+export function subscribeToNewsletter(email: string) {
+    let status: number;
+    return fetch(baseUrl + '/newsletter', {
+        headers, method: 'POST', credentials: 'include', body: JSON.stringify({
+            email
+        })
+    }).then(response => {
+        status = response.status;
+        return response.json()
+    }).then(body => {
+        return {
+            status, body
+        }
+    });
+}
