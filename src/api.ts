@@ -65,20 +65,20 @@ headers.append("Content-Type", "application/json");
 
 export function fetchPages() {
     return fetch(baseUrl + '/pages', {
-        headers, method: 'GET', credentials: 'include'
+        headers, method: 'GET'
     }).then(req => req.json() as Promise<Pages>);
 }
 
 export function fetchPage(id: string) {
     return fetch(baseUrl + `/page/${id}`, {
-        headers, method: 'GET', credentials: 'include'
+        headers, method: 'GET'
     }).then(req => req.json() as Promise<Page>);
 }
 
 export function subscribeToNewsletter(email: string) {
     let status: number;
     return fetch(baseUrl + '/newsletter', {
-        headers, method: 'POST', credentials: 'include', body: JSON.stringify({
+        headers, method: 'POST', body: JSON.stringify({
             email
         })
     }).then(response => {
